@@ -1,11 +1,26 @@
 %% R252 (robot) summoning
 
 
-function obj = R252(inputArg1,inputArg2)
-obj.Property1 = inputArg1 + inputArg2;
-end
 
-function outputArg = method1(obj,inputArg)
-outputArg = obj.Property1 + inputArg;
-end 
+%% Ikcon example code
+
+% r = UR3(); % call in robot
+% 
+% exampleTR = transl(0.1,0.2,0.5); % set the location you want
+% 
+% q = r.model.ikcon(exampleTR); % get the joint values
+% 
+% steps = 50; % framerate
+% 
+% q0 = r.model.getpos();
+% 
+% qMatrix = jtraj(q0,q,steps);
+% 
+% for i = 1:length(qMatrix)
+% 
+%     r.model.animate(qMatrix(i,:)); % animate
+% 
+%     drawnow();
+% 
+% end
 
