@@ -1,4 +1,5 @@
 %% Environment
+
 % %% Clear the workspace
 % clear;
 % clc;
@@ -8,6 +9,7 @@
 % kV = [0, 0, 0]; % Array that aligns the origin of the whole setup
 % %% Run these in order
 % Enviro(kV)
+% 
 % %% Create environment
 % 
 % % Function to create the environment
