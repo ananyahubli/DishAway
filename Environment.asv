@@ -24,7 +24,7 @@ surf([-6 + kV(1),-6 + kV(1);6 + kV(1), 6 + kV(1)] ...
     ,'FaceColor','texturemap');
 hold on;
 
-PlaceObject('Kitchen.ply',[kV(1)-2, kV(2)+4, kV(3)+0]);
+PlaceObject('Kitchen.ply',[kV(1+(5), kV+(5), kV+(0)]);
 
 view(2);
 %view(3);
