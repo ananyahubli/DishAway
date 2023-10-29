@@ -22,7 +22,7 @@ function varargout = Teach(varargin)
 
 % Edit the above text to modify the response to help Teach
 
-% Last Modified by GUIDE v2.5 16-Oct-2020 14:47:05
+% Last Modified by GUIDE v2.5 29-Oct-2023 19:54:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -66,7 +66,7 @@ handles.sim = RobotControl();
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes Teach wait for user response (see UIRESUME)
+% UIWAIT makes Teach wait for user response (see UIreanimate)
 % uiwait(handles.figure1);
 
 
@@ -596,16 +596,16 @@ disp('ESTOP disengaged.');
 global pressed;
 pressed = 0;
 
-% --- Executes on button press in resume_btn.
-function resume_btn_Callback(hObject, eventdata, handles)
-% hObject    handle to resume_btn (see GCBO)
+% --- Executes on button press in reanimate_btn.
+function reanimate_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to reanimate_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global pressed;
 
 if pressed == 0
     disp('Resuming dishwashing...');
-    uiresume
+    uireanimate
 else
     disp('Must disengage ESTOP before resuming dishwashing.');
 end
@@ -629,5 +629,19 @@ handles.sim.AnimateCollisionAvoidance();
 % --- Executes on button press in handbtn.
 function handbtn_Callback(hObject, eventdata, handles)
 % hObject    handle to handbtn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton17.
+function pushbutton17_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton17 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton18.
+function pushbutton18_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton18 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
