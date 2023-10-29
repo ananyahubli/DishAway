@@ -22,6 +22,7 @@ surf([-3.5 + kV(1),-3.5 + kV(1);3.5 + kV(1), 3.5 + kV(1)] ...
     ,'FaceColor','texturemap');
 hold on;
 
+PlaceObject('EV6-900.ply',[kV(1), kV(2), kV(3)]);
 PlaceObject('KitchenEnviro.ply',[kV(1), kV(2), kV(3)]);
 % PlaceObject('kuhnja.ply',[kV(1), kV(2), kV(3)]);
 
