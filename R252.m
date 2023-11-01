@@ -8,7 +8,7 @@ smoothAni = 20; % Speed of steps for animation (DON'T go over 50)
 workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dimensions
 
 % Add the robot and set its base transformation
-baseTR = transl([kV(1), kV(2), kV(3)+0.5]);
+baseTR = transl([kV(1), kV(2), kV(3)-1]);
 % Uri = LinearUR3(baseTR);
 UR3 = LinearUR3(baseTR);
 

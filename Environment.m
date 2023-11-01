@@ -8,7 +8,11 @@ clf;
 %% Set Axis and base (so it can be moved)
 kV = [0, 0, 0]; % Array that aligns the origin of the whole setup
 axis ([-6 6 -6 6 0 6]);
+
 %% Run these in order
+baseTR = transl([kV(1), kV(2), kV(3)-1]);
+UR3 = LinearUR3(baseTR);
+
 Enviro(kV)
 
 %% Create environment
