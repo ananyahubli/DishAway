@@ -25,6 +25,7 @@ surf([-6 + kV(1),-6 + kV(1);6 + kV(1), 6 + kV(1)] ...
 hold on;
 
 PlaceObject('Kitchen.ply',[kV(1)-2, kV(2)+4, kV(3)+0]);
+PlaceObject('plate_standing.ply',[kV(1)-1, kV(2)+4.2, kV(3)+1.9]);
 
 view(3);
 

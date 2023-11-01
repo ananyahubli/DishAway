@@ -36,7 +36,7 @@ brickV{6} = transl(-0.469 +kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trot
 
 BrickHerdCall = BrickHerd(6,brickU);
 
-% Animating the joints from q values 
+% Animating the joints from q values
 % (ie Calculate joint configurations for the brick positions)
 qBrickU = ikBrick(UR3,brickU); % inverse kinematics calcluations (initial position)
 qBrickV = ikBrick(UR3,brickV); % inverse kinematics calcluations (final positon)
@@ -58,33 +58,103 @@ end
 
 end
 
+%% Robot brick
 
+% Function to animate the robot and bricks
+function movingBricks(robot, qBrickU, qBrickV, BrickHerdCall, smoothAni)
+for h = 1:9
+    q1 = robot.model.getpos();
+    q1 = jtraj(q1,qBrickU{h},smoothAni);
+    brickMat = q1;
 
+    for j = 1:length(brickMat)
+        robot.model.animate(brickMat(j,:))
+        drawnow();
+    end
 
+    q1 = robot.model.getpos()
+    position = robot.model.fkine(q1)
 
+    % Brick positions
+    ActualPos = BrickHerdCall.cowModel{h}.base.t
+    pause(0.25)
 
+    q2 = jtraj(q1,qBrickV{h},smoothAni);
+
+    for k = 1:length(q2)
+        robot.model.animate(q2(k,:));
+        drawnow();
+
+        % End effector animation
+        endKine = robot.model.fkine(robot.model.getpos());
+
+        BrickHerdCall.cowModel{h}.base = endKine.T;
+        BrickHerdCall.cowModel{h}.animate(0);
+        drawnow()
+
+    end
+    pause(0);
+
+end
+end
+
+%% Point Cloud
+function pointCloud(robot)
+stepRads = deg2rad(45);
+qlim = robot.model.qlim;
+pointCloudeSize = prod(floor((qlim(1:7,2)-qlim(1:7,1))/stepRads + 1));
+pointCloud = zeros(pointCloudeSize,3);
+counter = 1;
+tic
+for q1 = qlim(1,1):stepRads:qlim(1,2)
+    for q2 = qlim(2,1):stepRads:qlim(2,2)
+        for q3 = qlim(3,1):stepRads:qlim(3,2)
+            for q4 = qlim(4,1):stepRads:qlim(4,2)
+                for q5 = qlim(5,1):stepRads:qlim(5,2)
+                    for q6 = qlim(6,1):stepRads:qlim(6,2)
+                        % joint 6 dw assume 0
+                        q7 = 0;
+                        %for q6 = qlim(6,1):stepRads:qlim(6,2)
+                        q = [q1,q2,q3,q4,q5,q6,q7];
+                        tr = robot.model.fkineUTS(q);
+                        pointCloud(counter,:) = tr(1:3,4)';
+                        counter = counter + 1;
+                        if mod(counter/pointCloudeSize * 100,1) == 0
+                            disp(['After ',num2str(toc),' seconds, completed ',num2str(counter/pointCloudeSize * 100),'% of poses']);
+                        end
+                        %                     end
+                    end
+                end
+            end
+        end
+    end
+end
+
+%%Create a 3D model showing where the end effector can be over all these samples.
+% plot3(pointCloud(:,1),pointCloud(:,2),pointCloud(:,3),'r.');
+end
 
 
 
 %% Ikcon example code
-% 
+%
 % r = EV6-900 % call in robot
-% 
+%
 % exampleTR = transl(0.1,0.2,0.5); % set the location you want
-% 
+%
 % q = r.model.ikcon(exampleTR); % get the joint values
-% 
+%
 % steps = 50; % framerate
-% 
+%
 % q0 = r.model.getpos();
-% 
+%
 % qMatrix = jtraj(q0,q,steps);
-% 
+%
 % for i = 1:length(qMatrix)
-% 
+%
 %     r.model.animate(qMatrix(i,:)); % animate
-% 
+%
 %     drawnow();
-% 
+%
 % end
 
