@@ -59,7 +59,6 @@ classdef LinearUR3 < RobotBaseClass
             link(5).offset = -pi/2;
 
             self.model = SerialLink(link,'name',self.name);
-            disp(LinearUR3)
         end
 
     end
