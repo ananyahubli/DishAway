@@ -29,8 +29,8 @@ brickU{2} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi);
 
 % The final brick positions
 brickV = cell(1,2);
-brickV{1} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi)*trotz(pi/2);
-brickV{2} = transl(-1+kV(1),4.2+kV(2),1.9+kV(3))* trotx(pi)*trotz(pi/2);
+brickV{1} = transl(1+kV(1),4.5+kV(2),1.75+kV(3))* trotx(-pi/2);
+brickV{2} = transl(1+kV(1),4.5+kV(2),1.76+kV(3))* trotx(-pi/2);
 % brickV{3} = transl(-0.469 +kV(1),0.449+kV(2),0.543+kV(3))* trotx(pi)*trotz(pi/2);
 % brickV{4} = transl(-0.2  +kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
 % brickV{5} = transl(-0.334+kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
