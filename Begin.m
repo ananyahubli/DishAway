@@ -24,7 +24,7 @@ function varargout = Begin(varargin)
 
 % Edit the above text to modify the response to help Begin
 
-% Last Modified by GUIDE v2.5 26-Oct-2023 23:41:25
+% Last Modified by GUIDE v2.5 02-Nov-2023 21:18:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,25 +75,17 @@ function varargout = Begin_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
+% % --- Executes on button press in btn_Begin.
+% function btn_Begin_Callback(hObject, eventdata, handles)
+% % hObject    handle to btn_Begin (see GCBO)
+% % eventdata  reserved - to be defined in a future version of MATLAB
+% % handles    structure with handles and user data (see GUIDATA)
+
+
 % --- Executes on button press in btn_Begin.
+% This is the button that acutally starts the simulation 
 function btn_Begin_Callback(hObject, eventdata, handles)
 % hObject    handle to btn_Begin (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-% --- Executes on button press in btn_Begin3.
-function btn_Begin3_Callback(hObject, eventdata, handles)
-% hObject    handle to btn_Begin3 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% Teach
-% close Begin
-
-
-% --- Executes on button press in pushbutton4.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Teach
