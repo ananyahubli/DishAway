@@ -75,17 +75,11 @@ function varargout = Begin_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% % --- Executes on button press in btn_Begin.
-% function btn_Begin_Callback(hObject, eventdata, handles)
-% % hObject    handle to btn_Begin (see GCBO)
-% % eventdata  reserved - to be defined in a future version of MATLAB
-% % handles    structure with handles and user data (see GUIDATA)
-
-
 % --- Executes on button press in btn_Begin.
 % This is the button that acutally starts the simulation 
 function btn_Begin_Callback(hObject, eventdata, handles)
 % hObject    handle to btn_Begin (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Teach
+close Begin; 
+teachUR3
