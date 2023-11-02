@@ -43,7 +43,7 @@ classdef BrickHerd < handle
             if nargin < 1
                 name = 'Cow';
             end
-            [faceData,vertexData] = plyread('plate.ply','tri');
+            [faceData,vertexData] = plyread('plate_standing.ply','tri');
 
             link1 = Link('alpha',0,'a',0,'d',0,'offset',0);
 

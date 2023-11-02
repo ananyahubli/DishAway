@@ -1,5 +1,4 @@
 %% R252 (robot) summoning
-clear all; 
 
 %% Set Axis and base (so it can be moved)
 kV = [0, 0, 0]; % Array that aligns the origin of the whole setup
@@ -8,7 +7,7 @@ smoothAni = 20; % Speed of steps for animation (DON'T go over 50)
 
 workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dimensions
 
-Environment
+Environment()
 
 % Add the robot and set its base transformation
 baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
@@ -22,7 +21,7 @@ pointCloud(UR3)
 % The inital brick positions
 brickU = cell(1,2);
 brickU{1} = transl(-1+kV(1),4.2+kV(2),1.9+kV(3))* trotx(pi);
-brickU{2} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi);
+brickU{2} = transl(0.5+kV(1),4.33+kV(2),1.72+kV(3))* trotx(pi);
 % brickU{3} = transl(-0.69+kV(1),-0.36+kV(2),0.543+kV(3))* trotx(pi);
 % brickU{4} = transl(-0.59+kV(1),-0.36+kV(2),0.543+kV(3))* trotx(pi);
 % brickU{5} = transl(-0.60+kV(1),-0.26+kV(2),0.563+kV(3))* trotx(pi);
@@ -30,8 +29,8 @@ brickU{2} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi);
 
 % The final brick positions
 brickV = cell(1,2);
-brickV{1} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi)*trotz(pi/2);
-brickV{2} = transl(-1+kV(1),4.2+kV(2),1.9+kV(3))* trotx(pi)*trotz(pi/2);
+brickV{1} = transl(-0.2  +kV(1),0.449+kV(2),0.543+kV(3))* trotx(pi)*trotz(pi/2);
+brickV{2} = transl(-0.334+kV(1),0.449+kV(2),0.543+kV(3))* trotx(pi)*trotz(pi/2);
 % brickV{3} = transl(-0.469 +kV(1),0.449+kV(2),0.543+kV(3))* trotx(pi)*trotz(pi/2);
 % brickV{4} = transl(-0.2  +kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
 % brickV{5} = transl(-0.334+kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
@@ -65,7 +64,7 @@ end
 
 % Function to animate the robot and bricks
 function movingBricks(robot, qBrickU, qBrickV, BrickHerdCall, smoothAni)
-for h = 1:2
+for h = 1:9
     q1 = robot.model.getpos();
     q1 = jtraj(q1,qBrickU{h},smoothAni);
     brickMat = q1;

@@ -38,41 +38,87 @@
 % light('Position', [0, 0, -2], 'Style', 'local');
 % end
 
-classdef Environment
+classdef Environment < handle
     properties
-        kV % Array that aligns the origin of the whole setup
+        % kV % Array that aligns the origin of the whole setup
     end
 
     methods
-        function obj = Environment()
-            % Constructor
-            obj.kV = [0, 0, 0];
-        end
+        % function obj = Environment()
+        %     % Constructor
+        %     kV = [0, 0, 0];
+        % end
 
-        function createEnvironment(obj)
-            % Create the environment
-            % Create the concrete floor
-            surf([-6 + obj.kV(1), 6 + obj.kV(1); 6 + obj.kV(1), 6 + obj.kV(1)], ...
-                [-6 + obj.kV(2), 6 + obj.kV(2); -6 + obj.kV(2), 6 + obj.kV(2)], ...
-                [0.01 + obj.kV(3), 0.01 + obj.kV(3); 0.01 + obj.kV(3), 0.01 + obj.kV(3)], ...
-                'CData', imread('concrete.jpg'), ...
-                'FaceColor', 'texturemap');
+        % function self = Environment()
+        %     kV = [0, 0, 0];
+        %     % Create the environment
+        %     % Create the concrete floor
+        %     surf([-6 + kV(1), 6 + kV(1); 6 + kV(1), 6 + kV(1)], ...
+        %         [-6 + kV(2), 6 + kV(2); -6 + kV(2), 6 + kV(2)], ...
+        %         [0.01 + kV(3), 0.01 + kV(3); 0.01 + kV(3), 0.01 + kV(3)], ...
+        %         'CData', imread('concrete.jpg'), ...
+        %         'FaceColor', 'texturemap');
+        %     hold on;
+        % 
+        %     placeObject('Kitchen.ply', [-2, 4, 0]);
+        %     placeObject('plate_standing.ply', [-1, 4.2, 1.9]);
+        % 
+        %     view(3);
+        % 
+        %     % Optional lighting for better visualization
+        %     light('Position', [0, 0, 2], 'Style', 'local');
+        %     light('Position', [0, 0, -2], 'Style', 'local');
+        % end
+
+        function self = Environment()
+            disp('Setting up environment');
+
+            % insert robot
+            %self.robot = LinearUR3(transl(1,4.5,1.7));
+            % hold on;
+            %axis ([-6 6 -2 6 0 6]);
+
+            %Nour Environment
+            kV = [0, 0, 0];
+
+            surf([-6 + kV(1),-6 + kV(1);6 + kV(1), 6 + kV(1)] ...
+                ,[-2 + kV(2),6 + kV(2);-2 + kV(2), 6 + kV(2)] ...
+                ,[0.01 + kV(3), 0.01 + kV(3); 0.01 + kV(3), 0.01 + kV(3)] ...
+                ,'CData',imread('concrete.jpg') ...
+                ,'FaceColor','texturemap');
             hold on;
 
-            obj.placeObject('Kitchen.ply', [-2, 4, 0]);
-            obj.placeObject('plate_standing.ply', [-1, 4.2, 1.9]);
+            PlaceObject('Kitchen.ply',[kV(1)-2, kV(2)+4, kV(3)+0]);
+            PlaceObject('plate_standing.ply', [-1, 4.2, 1.9]);
 
-            view(3);
+            view(2);
+            %view(3);
 
-            % Optional lighting for better visualization
+            % %% Optional lighting for better visualization
             light('Position', [0, 0, 2], 'Style', 'local');
             light('Position', [0, 0, -2], 'Style', 'local');
+
+            % % insert environment
+            % self.sponge = Sponge();
+            % self.plate = Plate();
+            %
+            % show = false;
+            % self.enviro = Environment(-0.02,0.14,-0.045,'dirtyplates.ply', show, 0.13, 0.18);
+            % self.enviro = Environment(-0.02,-0.15,-0.045,'cleanplates.ply', show, 0.13, 0.18);
+            % self.enviro = Environment(0,-0.06,-0.28,'enviro.ply', show, 0.9, 0.77);
+
+            % %camlight;
+
+            % set initial positions
+            % qStart = ([0,0,0,0,0,0,0]);
+            % self.robot.model.animate(qStart);
+            % self.plate.MovePlate(transl(-0.02,0.14,0.075)*trotx(pi));
+            % self.sponge.MoveSponge(transl(0.15,0.07,0.06)*trotx(pi));
+
+            % initialise visual servoing
+            %self.retreat = RobotRetreat();
         end
 
-        function placeObject(obj, objectFile, position)
-            % Function to place an object
-            % Your code for placing objects can go here.
-        end
     end
 end
 
