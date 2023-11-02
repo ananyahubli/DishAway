@@ -3,8 +3,6 @@ classdef BrickHerd < handle
     %   The cows can be moved around randomly. It is then possible to query
     %   the current location (base) of the cows.
 
-    %#ok<*TRYNC>
-
     properties
         cowCount = 2;
         cowModel;

@@ -12,7 +12,6 @@ Environment
 
 % Add the robot and set its base transformation
 baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
-% Uri = LinearUR3(baseTR);
 UR3 = LinearUR3(baseTR);
 
 pointCloud(UR3)
