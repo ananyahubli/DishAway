@@ -1,4 +1,5 @@
 %% Environment
+<<<<<<< Updated upstream
 
 % %% Clear the workspace
 % clear;
@@ -189,3 +190,5 @@ end
 % % set(h_1,'Vertices',verts(:,1:3))
 %
 % >>>>>>> 48ee822f9b0c3824178b544a3aa8b76332e785ab
+=======
+>>>>>>> Stashed changes
