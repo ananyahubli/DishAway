@@ -1,13 +1,45 @@
 %% Pulse 90 Summoning
 
-%% Set Axis and base (so it can be moved)
-kV = [0, 0, 0]; % Array that aligns the origin of the whole setup
-PlateCount = 6;
-Animation = 20; % Speed of steps for animation (DON'T go over 50)
+classdef Pulse90 < RobotBaseClass
+    %% Pulse90
 
-workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dim ensions
+    properties(Access = public)
+        plyFileNameStem = 'Rozum1';
+    end
 
-% Add the robot and set its base transformation
-baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
+    methods
+        %% Define robot Function
+        function self = Pulse90(baseTr)
+            self.CreateModel();
+            if nargin < 1
+                baseTr = eye(4);
+            end
+            self.model.base = self.model.base.T * baseTr * trotx(pi/2) * troty(pi/2);
+            self.PlotAndColourRobot();
+        end
 
-Link0 = pcread("Rozum0.ply");
+        %% Create the robot model
+        function CreateModel(self)
+
+            % Create the model mounted on a linear rail
+            link(1) = Link([pi     0         0         pi/2    1]); % PRISMATIC Link
+            link(2) = Link([0      0.1519    0         pi/2    0]);
+            link(3) = Link([0      0         -0.24365  0       0]);
+            link(4) = Link([0      0         -0.21325  0       0]);
+            link(5) = Link([0      0.11235   0         pi/2    0]);
+            link(6) = Link([0      0.08535   0         -pi/2   0]);
+            link(7) = Link([0      0.0819    0         0       0]);
+
+            % Incorporate joint limits
+            link(1).qlim = [-0.8 -0.01];
+            link(2).qlim = [-360 360]*pi/180;
+            link(3).qlim = [-90 90]*pi/180;
+            link(4).qlim = [-170 170]*pi/180;
+            link(5).qlim = [-360 360]*pi/180;
+            link(6).qlim = [-360 360]*pi/180;
+            link(7).qlim = [-360 360]*pi/180;
+
+            self.model = SerialLink(link,'name',self.name);
+        end
+    end
+end
