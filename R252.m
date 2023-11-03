@@ -11,6 +11,13 @@ workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dimensions
 
 Environment
 
+% Adding 2nd robot 
+h_1 = PlaceObject('Arm90.ply', [-4,1.75,-3.5]);
+verts = [get(h_1,'Vertices'), ones(size(get(h_1,'Vertices'),1),1)] * trotx(-pi/2);
+verts(:,1) = verts(:,1);
+set(h_1,'Vertices',verts(:,1:3))
+% baseTR = transl([kV(1)-4, kV(2)2, kV(3)+1.75]);
+
 % Add the robot and set its base transformation
 baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
 UR3 = LinearUR3(baseTR);
