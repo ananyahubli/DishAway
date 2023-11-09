@@ -16,10 +16,22 @@ classdef Pulse90v2 < RobotBaseClass
 
         end
 
-        function PlotAndColourRobot(self)
-            figure;
+        % function PlotAndColourRobot(self)
+        %     figure;
+        %     self.model.plot(zeros(1, self.model.n), 'workspace', [-1 1 -1 1 -1 1], 'tilesize', 0.1, 'floorlevel', -0.5);
+        % end
+
+        function PlotAndColourRobot(self, figHandle)
+            if nargin < 2
+                figHandle = figure;
+            else
+                figure(figHandle);
+            end
+
             self.model.plot(zeros(1, self.model.n), 'workspace', [-1 1 -1 1 -1 1], 'tilesize', 0.1, 'floorlevel', -0.5);
         end
+
+
 
 
         %% Create the robot model

@@ -1,6 +1,6 @@
 %% Environment
 classdef Environment < handle
-    properties
+    properties 
     end
 
     methods
