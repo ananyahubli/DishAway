@@ -10,6 +10,13 @@ workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dimensions
 
 Environment
 
+% Adding 2nd robot 
+h_1 = PlaceObject('Arm90.ply', [-4,1.75,-3.5]);
+verts = [get(h_1,'Vertices'), ones(size(get(h_1,'Vertices'),1),1)] * trotx(-pi/2);
+verts(:,1) = verts(:,1);
+set(h_1,'Vertices',verts(:,1:3))
+% baseTR = transl([kV(1)-4, kV(2)2, kV(3)+1.75]);
+
 % Add the robot and set its base transformation
 baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
 UR3 = LinearUR3(baseTR);
@@ -19,24 +26,24 @@ pointCloud(UR3)
 %% Initialising the UR3 and Bricks + Animation
 
 % The inital brick positions
-brickU = cell(1,6);
+brickU = cell(1,2);
 brickU{1} = transl(-1+kV(1),4.2+kV(2),1.9+kV(3))* trotx(pi);
 brickU{2} = transl(-1+kV(1),4.3+kV(2),1.9+kV(3))* trotx(pi);
-brickU{3} = transl(-1+kV(1),4.4+kV(2),1.9+kV(3))* trotx(pi);
-brickU{4} = transl(-1+kV(1),4.5+kV(2),1.9+kV(3))* trotx(pi);
-brickU{5} = transl(-1+kV(1),4.6+kV(2),1.9+kV(3))* trotx(pi);
-brickU{6} = transl(-1+kV(1),4.7+kV(2),1.9+kV(3))* trotx(pi);
+% brickU{3} = transl(-0.69+kV(1),-0.36+kV(2),0.543+kV(3))* trotx(pi);
+% brickU{4} = transl(-0.59+kV(1),-0.36+kV(2),0.543+kV(3))* trotx(pi);
+% brickU{5} = transl(-0.60+kV(1),-0.26+kV(2),0.563+kV(3))* trotx(pi);
+% brickU{6} = transl(-0.39+kV(1),-0.36+kV(2),0.543+kV(3))* trotx(pi);
 
 % The final brick positions
-brickV = cell(1,6);
+brickV = cell(1,2);
 brickV{1} = transl(1+kV(1),4.5+kV(2),1.75+kV(3))* trotx(-pi/2);
 brickV{2} = transl(1+kV(1),4.5+kV(2),1.76+kV(3))* trotx(-pi/2);
-brickV{3} = transl(1+kV(1),4.5+kV(2),1.77+kV(3))* trotx(-pi/2);
-brickV{4} = transl(1+kV(1),4.5+kV(2),1.78+kV(3))* trotx(-pi/2);
-brickV{5} = transl(1+kV(1),4.5+kV(2),1.79+kV(3))* trotx(-pi/2);
-brickV{6} = transl(1+kV(1),4.5+kV(2),1.8+kV(3))* trotx(-pi/2);
+% brickV{3} = transl(-0.469 +kV(1),0.449+kV(2),0.543+kV(3))* trotx(pi)*trotz(pi/2);
+% brickV{4} = transl(-0.2  +kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
+% brickV{5} = transl(-0.334+kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
+% brickV{6} = transl(-0.469 +kV(1),0.449+kV(2),0.0341+0.543+kV(3))* trotx(pi)*trotz(pi/2);
 
-BrickHerdCall = BrickHerd(6,brickU);
+BrickHerdCall = BrickHerd(2,brickU);
 
 % Animating the joints from q values
 % (ie Calculate joint configurations for the brick positions)
@@ -49,9 +56,9 @@ movingBricks(UR3, qBrickU, qBrickV, BrickHerdCall, smoothAni) % Intialising anim
 
 % Function to calculate joint configurations for brick positions
 function brickMat = ikBrick(robot,positionBrick)
-brickMat = cell(1,6);
+brickMat = cell(1,2);
 
-for i = 1:6 % 9 bricks
+for i = 1:2 % 9 bricks
     aniEndEffect = positionBrick{i};
     brickMat{i} = robot.model.ikcon(aniEndEffect);
     %ikcon takes the joint limits but ikine doesn't
@@ -64,7 +71,7 @@ end
 
 % Function to animate the robot and bricks
 function movingBricks(robot, qBrickU, qBrickV, BrickHerdCall, smoothAni)
-for h = 1:6
+for h = 1:2
     q1 = robot.model.getpos();
     q1 = jtraj(q1,qBrickU{h},smoothAni);
     brickMat = q1;
@@ -159,4 +166,3 @@ end
 %     drawnow();
 %
 % end
-
