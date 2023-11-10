@@ -1,0 +1,31 @@
+%% yo 
+
+%% Ananya Test 
+
+%% Akshayan Test 
+
+%%
+
+% %% Create a Pulse90v2 robot with the default base transformation
+% 
+% robot = Pulse90v2();
+% 
+% % Test joint movement
+% robot.TestMoveJoints();
+
+%% 
+clear all;
+
+%% Create Pulse90v2 robot
+pulseRobot = Pulse90v2();
+
+%% Define pick and place locations
+initialPose = pulseRobot.model.getpos();
+pickLocation = initialPose * transl(0, 0, 0.5);  % Move the end-effector up
+placeLocation = initialPose * transl(0, 0, -0.5);  % Move the end-effector down
+
+%% Move to pick location
+pulseRobot.model.animate(pickLocation);
+
+%% Move to place location
+pulseRobot.model.animate(placeLocation);
