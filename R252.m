@@ -12,8 +12,8 @@ workspace = [-6, 6, -6, 6, 0, 6]; % Define the workspace dimensions
 Environment
 
 % Add the robot and set its base transformation
-baseTR_1 = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
-UR3 = LinearUR3(baseTR_1);
+baseTR = transl([kV(1)+0.5, kV(2)+4.3, kV(3)+1.75]);
+UR3 = LinearUR3(baseTR);
 % UR3.PlotAndColourRobot(figureHandle);
 hold on;
 
