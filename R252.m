@@ -18,10 +18,10 @@ UR3 = LinearUR3(baseTR_1);
 hold on;
 
 % Adding 2nd robot
-% h_1 = PlaceObject('Arm90.ply', [-4,1.75,-3.5]);
-% verts = [get(h_1,'Vertices'), ones(size(get(h_1,'Vertices'),1),1)] * trotx(-pi/2);
-% verts(:,1) = verts(:,1);
-% set(h_1,'Vertices',verts(:,1:3))
+h_1 = PlaceObject('Arm90.ply', [-4,1.75,-3.5]);
+verts = [get(h_1,'Vertices'), ones(size(get(h_1,'Vertices'),1),1)] * trotx(-pi/2);
+verts(:,1) = verts(:,1);
+set(h_1,'Vertices',verts(:,1:3))
 
 % baseTR_2 = transl([kV(1)-4, kV(2)+2, kV(3)+1.75]);
 % P90 = Pulse90v2(baseTR_2);
