@@ -31,7 +31,7 @@ classdef LinearUR3 < RobotBaseClass
             link(7) = Link([0      0.0819    0         0       0]);
 
             % Incorporate joint limits
-            link(1).qlim = [-0.8 -0.01];
+            link(1).qlim = [-0.8 -0.01]; %moves from col 1 to 2 in steps of 45
             link(2).qlim = [-360 360]*pi/180;
             link(3).qlim = [-90 90]*pi/180;
             link(4).qlim = [-170 170]*pi/180;
