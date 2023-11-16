@@ -104,7 +104,7 @@ for h = 1:6
         % End effector animation
         endKine = robot.model.fkine(robot.model.getpos());
 
-        BrickHerdCall.cowModel{h}.base = endKine.T;
+        BrickHerdCall.cowModel{h}.base = endKine.T; %rotating EE
         BrickHerdCall.cowModel{h}.animate(0);
         drawnow()
 
