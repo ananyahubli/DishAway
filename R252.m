@@ -89,7 +89,7 @@ for h = 1:6
     end
 
     q1 = robot.model.getpos()
-    position = robot.model.fkine(q1)
+    position = robot.model.fkine(q1) %EE to plates
 
     % Brick positions
     ActualPos = BrickHerdCall.cowModel{h}.base.t
