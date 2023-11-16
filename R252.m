@@ -85,7 +85,7 @@ for h = 1:6
 
     for j = 1:length(brickMat)
         robot.model.animate(brickMat(j,:))
-        drawnow();
+        drawnow(); %mapping out movement of links
     end
 
     q1 = robot.model.getpos()
@@ -99,7 +99,7 @@ for h = 1:6
 
     for k = 1:length(q2)
         robot.model.animate(q2(k,:));
-        drawnow();
+        drawnow(); 
 
         % End effector animation
         endKine = robot.model.fkine(robot.model.getpos());
