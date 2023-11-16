@@ -132,8 +132,8 @@ for q1 = qlim(1,1):stepRads:qlim(1,2)
                         q7 = 0;
                         %for q6 = qlim(6,1):stepRads:qlim(6,2)
                         q = [q1,q2,q3,q4,q5,q6,q7];
-                        tr = robot.model.fkineUTS(q);
-                        pointCloud(counter,:) = tr(1:3,4)';
+                        tr = robot.model.fkineUTS(q); 
+                        pointCloud(counter,:) = tr(1:3,4)'; %EE
                         counter = counter + 1;
                         if mod(counter/pointCloudeSize * 100,1) == 0
                             disp(['After ',num2str(toc),' seconds, completed ',num2str(counter/pointCloudeSize * 100),'% of poses']);
