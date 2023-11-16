@@ -132,10 +132,10 @@ for q1 = qlim(1,1):stepRads:qlim(1,2)
                         q7 = 0;
                         %for q6 = qlim(6,1):stepRads:qlim(6,2)
                         q = [q1,q2,q3,q4,q5,q6,q7]; %create array of position of each link through steps
-                        tr = robot.model.fkineUTS(q); 
-                        pointCloud(counter,:) = tr(1:3,4)'; %EE
+                        tr = robot.model.fkineUTS(q); %calculating matrix of EE 
+                        pointCloud(counter,:) = tr(1:3,4)'; %position of EE from matrix
                         counter = counter + 1;
-                        if mod(counter/pointCloudeSize * 100,1) == 0
+                        if mod(counter/pointCloudeSize * 100,1) == 0 
                             disp(['After ',num2str(toc),' seconds, completed ',num2str(counter/pointCloudeSize * 100),'% of poses']);
                         end
                         %                     end
